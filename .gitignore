@@ -1,2 +1,5 @@
 /tmp
-/.envrc
+/.env
+.devenv
+.pre-commit-config.yaml
+result
