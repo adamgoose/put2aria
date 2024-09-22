@@ -25,9 +25,9 @@
       };
 
       putio = {
-        oauthToken = l.mkOption {
+        oauthTokenFile = l.mkOption {
           type = l.types.str;
-          description = "Put.io OAuth Token";
+          description = "Path to file containing Put.io OAuth Token";
         };
       };
 
@@ -37,9 +37,9 @@
           description = "Aria2 WebSocket RPC URL";
         };
 
-        rpcSecret = l.mkOption {
+        rpcSecretFile = l.mkOption {
           type = l.types.str;
-          description = "Aria2 RPC Secret";
+          description = "Path to file containing Aria2 RPC Secret";
         };
       };
     };
@@ -60,9 +60,9 @@
         wantedBy = ["multi-user.target"];
 
         environment = {
-          PUT2ARIA_PUTIO_OAUTH_TOKEN = cfg.putio.oauthToken;
+          PUT2ARIA_PUTIO_OAUTH_TOKEN_FILE = cfg.putio.oauthTokenFile;
           PUT2ARIA_ARIA2_RPC_URL = cfg.aria2.rpcUrl;
-          PUT2ARIA_ARIA2_RPC_SECRET = cfg.aria2.rpcSecret;
+          PUT2ARIA_ARIA2_RPC_SECRET_FILE = cfg.aria2.rpcSecretFile;
           PUT2ARIA_LISTEN = cfg.listen;
         };
 

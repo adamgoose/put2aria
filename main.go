@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log"
+	"os"
 
 	"github.com/adamgoose/put2aria/cmd"
 	"github.com/adamgoose/put2aria/put2aria"
@@ -37,7 +38,27 @@ func main() {
 	cmd.Execute()
 }
 
+var secrets = []string{"PUTIO_OAUTH_TOKEN", "ARIA2_RPC_SECRET"}
+
 func init() {
 	viper.SetEnvPrefix("PUT2ARIA")
 	viper.AutomaticEnv()
+
+	for _, secret := range secrets {
+		if viper.GetString(secret) != "" {
+			continue
+		}
+
+		filePath := viper.GetString(secret + "_FILE")
+		if filePath == "" {
+			continue
+		}
+
+		value, err := os.ReadFile(filePath)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		viper.Set(secret, string(value))
+	}
 }
