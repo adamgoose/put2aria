@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     devenv.url = "github:cachix/devenv/v1.1";
-    gomod2nix.url = "github:niklashhh/gomod2nix/fix-recursive-symlinker";
+    gomod2nix.url = "github:nix-community/gomod2nix/v1.6.0";
     gomod2nix.inputs.nixpkgs.follows = "nixpkgs";
 
     std.url = "github:divnix/std";
